@@ -1,10 +1,16 @@
+"use client";
 import React from "react";
-import logo from "/public/logo.webp"
+import logo from "/public/logo.webp";
 import Image from "next/image";
 import { ShoppingCart, Search } from "lucide-react";
 import Link from "next/link";
 import { Input } from "../ui/input";
+import {useSelector} from "react-redux"
+import { RootState } from "@/store/store";
 function Header() {
+const cartValue = useSelector(
+  (state: RootState) => state.cart.totalQuantity
+)
   return (
     <div className="flex justify-between flex-col lg:flex-row items-center py-6 px-20 ">
       <Link href={"/"}>
@@ -33,9 +39,9 @@ function Header() {
         />
       </div>
       <div className="relative flex justify-center items-center h-10 w-10 rounded-full bg-gray-300">
-        <div className="absolute top-0 right-0 bg-red-400 text-xs font-light rounded-full w-4 h-4 flex justify-center items-center">
-          3
-        </div>
+        <span className="absolute top-0 right-0 bg-red-400 text-xs font-light rounded-full w-4 h-4 flex justify-center items-center">
+          {cartValue}
+        </span>
         <ShoppingCart className="h-6 w-6" />
       </div>
     </div>

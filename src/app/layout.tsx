@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header'
 import './globals.css'
 import { Sora } from 'next/font/google'
+import Providers from '@/components/Provider'
 
 const inter = Sora({ subsets: ['latin'] })
 
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <main className="px-20">{children}</main>
+        <Providers>
+          <Header />
+          <main className="px-20">{children}</main>
+        </Providers>
       </body>
     </html>
   );

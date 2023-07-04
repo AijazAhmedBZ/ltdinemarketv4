@@ -7,7 +7,7 @@ import Instyle from "public/instyle.png";
 const PartnerLogo = () => {
   return (
     <div>
-      <ul className="flex  gap-x-8 justify-between">
+      <ul className="flex  gap-x-8 justify-between items-end">
         <li>
           <Image src={Bazaar} alt="dinemarket_partner_logo"></Image>
         </li>

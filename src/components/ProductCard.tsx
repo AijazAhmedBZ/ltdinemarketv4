@@ -1,6 +1,6 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-import { Button } from "./ui/button";
+import AddToCart from "./AddToCart";
 
 const ProductCard = (props: {
   title: string;
@@ -8,18 +8,15 @@ const ProductCard = (props: {
   price: number;
   img: StaticImageData;
 }) => {
-//   {
-//     /* <Link href={`/products/${props.id}`} */
-//   }
   return (
-    <div>
+    <div className="mt-10" >
       <Image src={props.img} alt="product" />
       <h3 className="font-bold text-lg">{props.title}</h3>
       <h3 className="font-bold text-lg mt-3 text-gray-400 ">
         {props.category}
       </h3>
       <h3 className="font-bold text-lg">${props.price}</h3>
-      <Button className="text-white rounded-lg mt-4 ">Add to Cart</Button>
+      <AddToCart/>
     </div>
   );
 };
