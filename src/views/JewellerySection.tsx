@@ -60,7 +60,7 @@ const JewellerySection = () => {
             />
           </div>
           <div>
-            <div className="ml-10 w-72">
+            <div className="ml-10 w-[282px] text-justify font-light text-sm">
               This piece is ethically crafted in our small family-owned workshop
               in Peru with unmatched attention to detail and care. The Natural
               color is the actual natural color of the fiber, undyed and 100%
