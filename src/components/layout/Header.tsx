@@ -18,16 +18,16 @@ const cartValue = useSelector(
       </Link>
       <ul className="flex gap-x-10 flex-col lg:flex-row">
         <li className="text-lg">
-          <Link href={"/category/women"}>Women</Link>
+          <Link href={"/women"}>Women</Link>
         </li>
         <li className="text-lg">
-          <Link href={"/category/men"}>Men</Link>
+          <Link href={"/men"}>Men</Link>
         </li>
         <li className="text-lg">
-          <Link href={"/category/kids"}>Kids</Link>
+          <Link href={"/kids"}>Kids</Link>
         </li>
         <li className="text-lg">
-          <Link href={"/category/all_products"}>All Products</Link>
+          <Link href={"/products/"}>All Products</Link>
         </li>
       </ul>
       <div className="border rounded-lg flex gap-2 items-center text-gray-600 px-2">
