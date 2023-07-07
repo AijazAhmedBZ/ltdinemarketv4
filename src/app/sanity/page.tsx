@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { client } from "@/lib/client";
-import ProductCard from "@/components/ProductCard";
+import { urlForImage } from "@/lib/image";
 import { ProductTypes } from "@/utils/types";
-import { title } from "process";
+import AddToCart from "@/components/AddToCart";
 
-export const getProductData = async () => {
+export const ProductsData = async () => {
   const res = await client.fetch(`*[_type=="product"]{
     _id,
     product,
@@ -18,19 +18,20 @@ export const getProductData = async () => {
   return res;
 };
 
-
 export default async function Home() {
-  const data: ProductTypes[] = await getProductData();
-  //console.log(data);
-  return (
-<>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-x-10 gap-y-20">
-         {data.map((product) => (
-           <div key={product._id}>
-             <ProductCard product={product} />
-           </div>
-         ))}
-       </div>
-      </>
-  );
+  const data: ProductTypes[] = await ProductsData();
+ // console.log(data);
+  return <>
+  <div>{data.map((product)=> (
+    <div>
+      <Image width={200} height={300} src={urlForImage(product.image).url()} alt={product.product}/>
+  <h1>{product.product}</h1>
+  <h3>{product.category}</h3>
+  <h4>${product.price}</h4>
+    <AddToCart/>
+    </div>
+  )
+  )}</div>
+  
+  </>;
 }
