@@ -46,7 +46,7 @@ export const ProductsData = async () => {
   return res;
 };
 
-export default async function Home() {
-  const data: ProductTypes[] = await ProductsData();
+// export default async function Home() {
+//   const data: ProductTypes[] = await ProductsData();
   // console.log(data);
-}
+// }
