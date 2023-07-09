@@ -3,10 +3,10 @@ import ProductCard from "@/components/ProductCard";
 import { ProductsData } from "@/utils/mock";
 import { ProductTypes } from "@/utils/types";
 
-export async function AllProducts() {
+const AllProducts = async () => {
   const data: ProductTypes[] = await ProductsData();
   return (
-    <div className="">
+    <div>
       {data.map((products) => (
         <ProductCard
           key={products._id}

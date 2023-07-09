@@ -23,7 +23,7 @@ export default async function Home() {
  // console.log(data);
   return <>
   <div>{data.map((product)=> (
-    <div>
+    <div key={product._id}>
       <Image width={200} height={300} src={urlForImage(product.image).url()} alt={product.product}/>
   <h1>{product.product}</h1>
   <h3>{product.category}</h3>
