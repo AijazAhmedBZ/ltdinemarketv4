@@ -8,7 +8,7 @@ const AddToCart = () => {
   const dispatch = useDispatch();
 const addProduct=() =>{
   dispatch(cartActions.addToCart({quantity:1}))
-toast.success("Product Add to Cart Succesfully")
+toast.success("Product Add to Cart Successfully")
 }
   return (
     <div>

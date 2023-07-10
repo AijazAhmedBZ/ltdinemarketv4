@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import jewelleryImage from "public/jewellery.png";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 const JewellerySection = () => {
   return (
     <section>
@@ -67,7 +68,9 @@ const JewellerySection = () => {
               traceable.
             </div>
             <div className="ml-10 mt-10">
-              <Button>See All Products</Button>
+              <Link href={"/products/"}>
+                <Button>See All Products</Button>
+              </Link>
             </div>
           </div>
         </div>
