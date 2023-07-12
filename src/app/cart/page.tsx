@@ -1,24 +1,29 @@
-import { NextRequest, NextResponse } from "next/server";
-import { cartTable, db } from "@/lib/drizzle";
+import { cartTable } from "@/lib/drizzle";
+import { ProductTypes } from "@/utils/types";
 import { cookies } from "next/headers";
-import { eq } from "drizzle-orm";
+import { NextRequest } from "next/server";
 
-export const GET = async (request: NextRequest) => {
+export default async function Page() {
   cookies().get("user_id")?.value as string;
-
   fetch(
-    `http://localhost:3000/cart?user_id=${cookies().get("user_id")?.value}`
+    `http://localhost:3000/api/cart?user_id=${cookies().get("user_id")?.value}`,
+    { credentials: "include" }
   );
-  const req = request.nextUrl;
-  const uid = req.searchParams.get("user_id") as string;
-  try {
-    const res = await db
-      .select()
-      .from(cartTable)
-      .where(eq(cartTable.user_id, uid));
-    return NextResponse.json({ res });
-  } catch (error) {
-    //  console.log(error);
-    return NextResponse.json({ message: "Somthing Went Wrong" });
-  }
-};
+  const getData = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:3000/api/cart", {
+        method: "GET",
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Faild to fetch data");
+      }
+      const result = await res.json();
+      return result;
+    } catch (err) {
+      console.log(getData);
+      console.log(err);
+    }
+  };
+  return <div>Aijaz</div>;
+}
