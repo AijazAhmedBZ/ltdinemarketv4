@@ -15,7 +15,7 @@ export const POST = async (request: NextRequest) => {
   }
 
   try {
-    const res:insertCartTypes[] = await db
+    const res: insertCartTypes[] = await db
       .insert(cartTable)
       .values({
         product_id: req.product_id,
@@ -24,7 +24,10 @@ export const POST = async (request: NextRequest) => {
       })
       .returning();
 
-    return NextResponse.json({ res });
+    return NextResponse.json({
+      res,
+      message: "Item added successfully",
+    });
   } catch (error) {}
   return NextResponse.json({ message: "Somthing Went Wrong" });
 };
@@ -37,15 +40,15 @@ export const GET = async (request: NextRequest) => {
 
   try {
     // console.log("After try GET Api from route uid", uid);
-    const res:cartTypes[] = await db
+    const res: cartTypes[] = await db
       .select()
       .from(cartTable)
       .where(eq(cartTable.user_id, uid));
-    console.log(res[0].id);
+    // console.log(res[0].id);
 
     // console.log("again try GET Api from route uid", uid);
     // console.log("res", res);
-    return NextResponse.json({ res });
+    return NextResponse.json({res});
   } catch (error) {
     console.log((error as { message: string }).message);
     return NextResponse.json({ message: "Somthing Went Wrong" });
@@ -61,11 +64,15 @@ export const DELETE = async (request: NextRequest) => {
   // // console.log("DELETE Api uid", uid);
 
   try {
-    const res = await db.delete(cartTable).where(eq(cartTable.user_id, uid));
+    const res = await db.delete(cartTable)
+    // .where(eq(cartTable.user_id, uid));
     // .from(cartTable)
     // .where(eq(cartTable.user_id, uid));
 
-    return NextResponse.json({ res });
+    return NextResponse.json({
+      res,
+      message: "Item deleted successfully",
+    });
   } catch (error) {
     console.log((error as { message: string }).message);
     return NextResponse.json({ message: "Somthing Went Wrong" });
