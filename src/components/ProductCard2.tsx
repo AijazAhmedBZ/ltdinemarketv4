@@ -37,7 +37,7 @@ const ProductCard2: FC<ProductTypes> = (products: ProductTypes) => {
         <h3 className="font-bold text-lg mt-3 text-gray-400 ">
           {products.category}
         </h3>
-        <h3 className="font-bold text-lg">${products.price}</h3>
+        <h3 className="font-bold text-lg">${products.price.toFixed(2)}</h3>
 
         <Button
           onClick={handleAddToCart}

@@ -10,6 +10,8 @@ export default async function getProductsByGroup({
 }) {
   const data: ProductTypes[] = await ProductsData();
   const result = data.filter((product) => product.group.name.toLowerCase() === params.group);
+  
+  console.log(result)
   return (
     <div>
       <div className="flex gap-x-10 justify-around">
@@ -23,7 +25,7 @@ export default async function getProductsByGroup({
                 height={300}
               />
               <h1 className="font-bold text-lg">{product.product}</h1>
-              <h3>${product.price}</h3>
+              <h3>${product.price.toFixed(2)}</h3>
               <AddToCart />
             </div>
           ))

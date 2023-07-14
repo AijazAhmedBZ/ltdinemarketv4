@@ -36,19 +36,14 @@ export const GET = async (request: NextRequest) => {
   const req = request.nextUrl;
   // console.log("req", req);
   const uid = req.searchParams.get("user_id") as string;
-  // console.log("GET Api from route uid", uid);
 
   try {
-    // console.log("After try GET Api from route uid", uid);
     const res: cartTypes[] = await db
       .select()
       .from(cartTable)
       .where(eq(cartTable.user_id, uid));
-    // console.log(res[0].id);
 
-    // console.log("again try GET Api from route uid", uid);
-    // console.log("res", res);
-    return NextResponse.json({res});
+    return NextResponse.json({ res });
   } catch (error) {
     console.log((error as { message: string }).message);
     return NextResponse.json({ message: "Somthing Went Wrong" });
@@ -58,16 +53,9 @@ export const GET = async (request: NextRequest) => {
 export const DELETE = async (request: NextRequest) => {
   const req = request.nextUrl;
   const uid = req.searchParams.get("user_id") as string;
-  // const uid = cookies().get("user_id")?.value as string
-  // console.log(uid)
-  // // console.log("req", req);
-  // // console.log("DELETE Api uid", uid);
 
   try {
-    const res = await db.delete(cartTable)
-    // .where(eq(cartTable.user_id, uid));
-    // .from(cartTable)
-    // .where(eq(cartTable.user_id, uid));
+    const res = await db.delete(cartTable).where(eq(cartTable.user_id, uid));
 
     return NextResponse.json({
       res,

@@ -22,12 +22,11 @@ const getCartData = async () => {
 };
 const CartData = async () => {
   const data: cartTypes[] = await getCartData();
-//   console.log(data);
+console.log(data)
+
   return (
     <>
-      {data.map((data) => (
-        <div>{data.quantity}</div>
-      ))}
+      {/* {data[0].id} */}
     </>
   );
 };

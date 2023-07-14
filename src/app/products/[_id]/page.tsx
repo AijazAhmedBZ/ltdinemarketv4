@@ -24,7 +24,7 @@ export default async function getProductsById({
               height={300}
             />
             <h1 className="font-bold text-lg">{product.product}</h1>
-            <h3>${product.price}</h3>
+            <h3>${product.price.toFixed(2)}</h3>
             <AddToCart/>
           </div>
         ))}
