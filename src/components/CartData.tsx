@@ -4,31 +4,22 @@ import { cookies } from "next/headers";
 
 const getCartData = async () => {
   cookies().get("user_id")?.value;
-  try {
-    const res = await fetch(
-      `http://localhost:3000/api/cart?user_id=${
-        cookies().get("user_id")?.value
-      }`,
-      { credentials: "include" }
-    );
-    if (!res.ok) {
-      throw new Error("Failed to fetch cart data");
-    }
-    const result = await res.json();
-    return result;
-  } catch (err) {
-    // console.log(err);
-  }
+  const res = await fetch(
+    `http://localhost:3000/api/cart?user_id=${cookies().get("user_id")?.value}`,
+    { credentials: "include" }
+  );
+  return res.json();
 };
-const CartData = async () => {
-  const data: cartTypes[] = await getCartData();
-console.log(data)
 
+export default async function CartData() {
+  const {data} = await getCartData();
+
+  console.log(data);
   return (
     <>
-      {/* {data[0].id} */}
+      {data.map((t) => {
+        return <div key={t.id}>{t.quantity}</div>;
+      })}
     </>
   );
-};
-
-export default CartData;
+}
