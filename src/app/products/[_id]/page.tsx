@@ -20,12 +20,15 @@ export default async function getProductsById({
             <Image
               src={urlForImage(product.image).url()}
               alt={product.product}
-              width={200}
-              height={300}
+              width={370}
+              height={394}
             />
-            <h1 className="font-bold text-lg">{product.product}</h1>
-            <h3>${product.price.toFixed(2)}</h3>
-            <AddToCart/>
+            <h3 className="font-bold text-lg">{product.product}</h3>
+            <h3 className="font-bold text-lg mt-3 text-gray-400">
+              {product.category}
+            </h3>
+            <h3 className="font-bold text-lg">${product.price.toFixed(2)}</h3>
+            <AddToCart />
           </div>
         ))}
       </div>

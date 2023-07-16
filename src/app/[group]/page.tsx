@@ -9,23 +9,26 @@ export default async function getProductsByGroup({
   params: { group: string };
 }) {
   const data: ProductTypes[] = await ProductsData();
-  const result = data.filter((product) => product.group.name.toLowerCase() === params.group);
-  
-  console.log(result)
+  const result = data.filter(
+    (product) => product.group.name.toLowerCase() === params.group
+  );
+
+  // console.log(result);
   return (
-    <div>
-      <div className="flex gap-x-10 justify-around">
+    <div className="mt-10" >
+      <div className="grid grid-cols-1 gap-y-10 md:grid md:grid-cols-2 md:gap-x-10 lg:grid lg:grid-cols-4 lg:gap-x-10">
         {result.length > 0 ? (
           result.map((product) => (
             <div key={product._id}>
               <Image
                 src={urlForImage(product.image).url()}
                 alt={product.product}
-                width={200}
-                height={300}
+                width={370}
+                height={394}
               />
-              <h1 className="font-bold text-lg">{product.product}</h1>
-              <h3>${product.price.toFixed(2)}</h3>
+              <h3 className="font-bold text-lg">{product.product}</h3>
+              <h3 className="font-bold text-lg mt-3 text-gray-400">{product.category}</h3>
+              <h3 className="font-bold text-lg">${product.price.toFixed(2)}</h3>
               <AddToCart />
             </div>
           ))

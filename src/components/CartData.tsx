@@ -12,14 +12,16 @@ const getCartData = async () => {
 };
 
 export default async function CartData() {
-  const {data} = await getCartData();
+  const data: cartTypes = await getCartData();
 
   console.log(data);
+  console.log(data.user_id);
+  console.log(typeof data);
   return (
     <>
-      {data.map((t) => {
-        return <div key={t.id}>{t.quantity}</div>;
-      })}
+      {/* {data.map((cart) => {
+        return <div key={cart.id}>{cart.quantity}</div>;
+      })} */}
     </>
   );
 }

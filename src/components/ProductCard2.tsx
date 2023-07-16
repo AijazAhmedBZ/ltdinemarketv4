@@ -22,7 +22,7 @@ const ProductCard2: FC<ProductTypes> = (products: ProductTypes) => {
   };
 
   return (
-    <div>
+    <div >
       {" "}
       <div className="mt-10">
         <Link href={`/products/${products._id}`}>
