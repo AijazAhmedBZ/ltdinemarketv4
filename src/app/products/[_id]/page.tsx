@@ -15,20 +15,26 @@ export default async function getProductsById({
   return (
     <div>
       <div>
+
+
         {result.map((product) => (
-          <div key={product._id}>
+          <div key={product._id} className="flex gap-10" > 
             <Image
               src={urlForImage(product.image).url()}
               alt={product.product}
               width={370}
               height={394}
             />
-            <h3 className="font-bold text-lg">{product.product}</h3>
+<div>
+            <h1 className="font-bold text-lg">{product.product}</h1>
             <h3 className="font-bold text-lg mt-3 text-gray-400">
               {product.category}
             </h3>
-            <h3 className="font-bold text-lg">${product.price.toFixed(2)}</h3>
+    <div className="flex gap-5 items-baseline"  >
             <AddToCart />
+            <h3 className="font-bold text-lg">${product.price.toFixed(2)}</h3>
+    </div>
+</div>
           </div>
         ))}
       </div>
