@@ -1,27 +1,39 @@
 "use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { counterActions } from "@/store/slice/cartSlice";
+import { cartActions } from "@/store/slice/cartSlice";
 import { RootState } from "@/store/store";
 
 const CartCounter = () => {
   const dispatch = useDispatch();
 
   const cartCounterValue = useSelector(
-    (state: RootState) => state.cartSlice.value
+    (state: RootState) => state.cart.totalQuantity
   );
 
   const increment = () => {
-    dispatch(counterActions.addToCart());
+    dispatch(cartActions.addToCart({ quantity: 1 }));
   };
   const decrement = () => {
-    dispatch(counterActions.removeFromCart());
-  };
+    if(cartCounterValue) (
+      dispatch(cartActions.removeFromCart({ quantity: 1 }))
+    )
+  }
   return (
-    <div className="flex gap-5">
-      <button onClick={}>-</button>
+    <div className="flex justify-center items-baseline gap-5">
+      <button
+        className="w-[42px] h-[42px] duration-300 border rounded-full hover:shadow-xl mt-2 text-base font-bold center"
+        onClick={decrement}
+      >
+        -
+      </button>
       <div>{cartCounterValue}</div>
-      <button onClick={increment}>+</button>
+      <button
+        className="w-[42px] h-[42px] duration-300 border rounded-full hover:shadow-xl mt-2 text-base font-bold center"
+        onClick={increment}
+      >
+        +
+      </button>
     </div>
   );
 };

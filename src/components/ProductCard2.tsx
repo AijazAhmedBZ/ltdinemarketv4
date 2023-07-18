@@ -7,6 +7,7 @@ import { urlForImage } from "@/lib/image";
 import { ProductTypes } from "@/utils/types";
 import { Button } from "./ui/button";
 import { FC } from "react";
+import toast from "react-hot-toast";
 
 const ProductCard2: FC<ProductTypes> = (products: ProductTypes) => {
   const handleAddToCart = async () => {
@@ -16,13 +17,13 @@ const ProductCard2: FC<ProductTypes> = (products: ProductTypes) => {
         product_id: products._id,
       }),
     });
-
     const result = await res.json();
     console.log(result);
+    toast.success("Product Add to Cart Successfully")
   };
 
   return (
-    <div >
+    <div>
       {" "}
       <div className="mt-10">
         <Link href={`/products/${products._id}`}>

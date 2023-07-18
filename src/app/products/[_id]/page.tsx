@@ -4,6 +4,9 @@ import { ProductTypes } from "@/utils/types";
 import Image from "next/image";
 import AddToCart from "@/components/AddToCart";
 import { urlForImage } from "@/lib/image";
+import CartCounter from "@/components/CartCounter";
+
+const sizes = ["XS", "S", "M", "L", "XL"];
 
 export default async function getProductsById({
   params,
@@ -15,26 +18,44 @@ export default async function getProductsById({
   return (
     <div>
       <div>
-
-
         {result.map((product) => (
-          <div key={product._id} className="flex gap-10" > 
+          <div key={product._id} className="flex gap-10">
             <Image
               src={urlForImage(product.image).url()}
               alt={product.product}
               width={370}
               height={394}
             />
-<div>
-            <h1 className="font-bold text-lg">{product.product}</h1>
-            <h3 className="font-bold text-lg mt-3 text-gray-400">
-              {product.category}
-            </h3>
-    <div className="flex gap-5 items-baseline"  >
-            <AddToCart />
-            <h3 className="font-bold text-lg">${product.price.toFixed(2)}</h3>
-    </div>
-</div>
+            <div className="h-full">
+              <h1 className="font-bold text-[26px]">{product.product}</h1>
+              <h2 className="font-bold text-lg mt-3 text-gray-400">
+                {product.category}
+              </h2>
+
+              <div className="mt-20 text-[13] font-bold">SELECT SIZE</div>
+              <div className="flex gap-x-3 mt-2">
+                {sizes.map((size) => {
+                  return (
+                    <div className="w-[42px] h-[42px] duration-300 border rounded-full hover:shadow-xl mt-2 text-base font-bold center ">
+                      <span>{size}</span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="flex gap-x-3 items-baseline mt-3 ">
+                <h3 className="text-[13px] font-semibold mt-3">Quantity:</h3>
+                <div>
+                  <CartCounter />
+                </div>
+              </div>
+              <div className="flex gap-5 items-baseline mt-7">
+                <AddToCart />
+                <h3 className="font-bold text-2xl">
+                  ${product.price.toFixed(2)}
+                </h3>
+              </div>
+            </div>
           </div>
         ))}
       </div>
