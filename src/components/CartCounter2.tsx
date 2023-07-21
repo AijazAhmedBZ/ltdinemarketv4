@@ -2,17 +2,14 @@
 import { useState } from "react";
 
 const CartCounter2 = () => {
+  const [cartCount, setCart] = useState(0);
 
-  const [addCart, setCart] = useState('')
-  
   const increment = () => {
-    dispatch(cartActions.addToCart({ quantity: 1 }));
+    setCart(cartCount + 1);
   };
   const decrement = () => {
-    if(cartCounterValue) (
-      dispatch(cartActions.removeFromCart({ quantity: 1 }))
-    )
-  }
+    if (cartCount) setCart(cartCount - 1);
+  };
   return (
     <div className="flex justify-center items-baseline gap-5">
       <button
@@ -21,7 +18,7 @@ const CartCounter2 = () => {
       >
         -
       </button>
-      <div>{cartCounterValue}</div>
+      <div>{cartCount}</div>
       <button
         className="w-[42px] h-[42px] duration-300 border rounded-full hover:shadow-xl mt-2 text-base font-bold center"
         onClick={increment}
