@@ -19,7 +19,7 @@ const ProductCard2: FC<ProductTypes> = (products: ProductTypes) => {
     });
     const result = await res.json();
     console.log(result);
-    toast.success("Product Add to Cart Successfully")
+    toast.success("Product Add 2to Cart Successfully")
   };
 
   return (

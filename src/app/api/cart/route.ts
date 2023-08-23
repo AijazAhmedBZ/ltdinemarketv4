@@ -6,23 +6,22 @@ import { eq } from "drizzle-orm";
 
 export const POST = async (request: NextRequest) => {
   const req = await request.json();
-  const uid = uuid();
   const user_id = cookies().get("user_id")?.value as string;
-
+  const uid = uuid();
   if (!user_id) {
     const setCookies = cookies();
     setCookies.set("user_id", uid);
   }
-
   try {
     const res: insertCartTypes[] = await db
       .insert(cartTable)
       .values({
+        user_id: user_id as string,
         product_id: req.product_id,
         quantity: 1,
-        user_id: user_id as string,
       })
       .returning();
+    console.log("UID", uid);
 
     return NextResponse.json({
       res,
@@ -38,10 +37,8 @@ export const GET = async (request: NextRequest) => {
   const uid = req.searchParams.get("user_id") as string;
 
   try {
-    const res: cartTypes[] = await db
-      .select()
-      .from(cartTable)
-      .where(eq(cartTable.user_id, uid));
+    const res: cartTypes[] = await db.select().from(cartTable);
+    // .where(eq(cartTable.user_id, uid));
 
     return NextResponse.json({ res });
   } catch (error) {
@@ -56,11 +53,8 @@ export const DELETE = async (request: NextRequest) => {
 
   try {
     const res = await db.delete(cartTable).where(eq(cartTable.user_id, uid));
-
-    return NextResponse.json({
-      res,
-      message: "Item deleted successfully",
-    });
+    console.log("UID", uid);
+    return NextResponse.json({ res, message: "Item deleted successfully" });
   } catch (error) {
     console.log((error as { message: string }).message);
     return NextResponse.json({ message: "Somthing Went Wrong" });

@@ -6,8 +6,7 @@ import CartCounter2 from "./CartCounter2";
 const AddToCart2 = () => {
   const addProduct = () => {
     <CartCounter2 />;
-    
-    toast.success("Product Add to Cart Successfully");
+    toast.success("Product should be added Successfully");
   };
   return (
     <div>

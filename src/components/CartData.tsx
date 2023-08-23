@@ -20,7 +20,14 @@ export default async function CartData() {
   return (
     <>
       {data.res.map((cart) => {
-        return <div key={cart.id}>{cart.quantity}</div>;
+        return <div key={cart.id}>
+          <ul>
+            <li>ID:  {cart.id}</li>
+            <li>User ID:  {cart.user_id}</li>
+            <li>Product ID:  {cart.product_id}</li>
+            <li>Quantity:  {cart.quantity}</li>
+          </ul>
+        </div>;
       })}
     </>
   );
