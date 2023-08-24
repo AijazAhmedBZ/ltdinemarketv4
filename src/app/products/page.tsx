@@ -9,7 +9,7 @@ const AllProducts = async () => {
   return (
     <div className="grid grid-cols-1 gap-y-10 md:grid md:grid-cols-2 md:gap-x-10 lg:grid lg:grid-cols-4 lg:gap-x-10">
       {data.map((products) => (
-        <div >
+        <div key={products._id}>
         <ProductCard2 
           key={products._id}
           _id={products._id}

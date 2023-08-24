@@ -8,6 +8,7 @@ export const POST = async (request: NextRequest) => {
   const req = await request.json();
   const user_id = cookies().get("user_id")?.value as string;
   const uid = uuid();
+
   if (!user_id) {
     const setCookies = cookies();
     setCookies.set("user_id", uid);
@@ -18,10 +19,9 @@ export const POST = async (request: NextRequest) => {
       .values({
         user_id: user_id as string,
         product_id: req.product_id,
-        quantity: 1,
+        quantity: 11,
       })
       .returning();
-    console.log("UID", uid);
 
     return NextResponse.json({
       res,
@@ -37,8 +37,8 @@ export const GET = async (request: NextRequest) => {
   const uid = req.searchParams.get("user_id") as string;
 
   try {
-    const res: cartTypes[] = await db.select().from(cartTable);
-    // .where(eq(cartTable.user_id, uid));
+    const res: cartTypes[] = await db.select().from(cartTable)
+    .where(eq(cartTable.user_id, uid));
 
     return NextResponse.json({ res });
   } catch (error) {
