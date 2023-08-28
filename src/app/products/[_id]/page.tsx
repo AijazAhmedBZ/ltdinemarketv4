@@ -2,7 +2,7 @@ import React from "react";
 import { ProductsData } from "@/utils/mock";
 import { ProductTypes } from "@/utils/types";
 import Image from "next/image";
-import CartInteraction from "@/components/AddToCart2";
+import AddToCart from "@/components/AddToCart";
 import { urlForImage } from "@/lib/image";
 
 const sizes = ["XS", "S", "M", "L", "XL"];
@@ -46,7 +46,7 @@ export default async function getProductsById({
               </div>
 
               <div className="flex gap-5 items-baseline mt-7">
-                <CartInteraction />
+                <AddToCart />
                 <h3 className="font-bold text-2xl">
                   ${product.price.toFixed(2)}
                 </h3>

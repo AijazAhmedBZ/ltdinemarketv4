@@ -3,6 +3,7 @@ import { ProductsData } from "@/utils/mock";
 import { ProductTypes } from "@/utils/types";
 import { urlForImage } from "@/lib/image";
 import AddToCart from "@/components/AddToCart";
+
 export default async function getProductsByGroup({
   params,
 }: {
@@ -21,6 +22,7 @@ export default async function getProductsByGroup({
           result.map((product) => (
             <div key={product._id}>
               <Image
+                // src={urlForImage(product.image).url()}
                 src={urlForImage(product.image).url()}
                 alt={product.product}
                 width={370}

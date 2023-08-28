@@ -1,4 +1,4 @@
-import Header2 from "@/components/layout/Header2";
+import Header from "@/components/layout/Header";
 import "./globals.css";
 import { Sora } from "next/font/google";
 import Providers from "@/components/Provider";
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Wrapper>
           <Providers>
-            <Header2/>
+            <Header/>
             <main className="px-20">
               {children}
               <Footer />

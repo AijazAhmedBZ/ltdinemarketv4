@@ -33,7 +33,7 @@ import { client } from "@/lib/client";
 // ];
 
 export const ProductsData = async () => {
-  const res = await client.fetch(`*[_type=="product"]{
+  const res:ProductTypes[] = await client.fetch(`*[_type=="product"]{
     _id,
     product,
     category,
