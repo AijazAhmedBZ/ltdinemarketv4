@@ -4,6 +4,7 @@ import { ProductTypes } from "@/utils/types";
 import Image from "next/image";
 import AddToCart from "@/components/AddToCart";
 import { urlForImage } from "@/lib/image";
+import { Image as Img } from "sanity";
 
 const sizes = ["XS", "S", "M", "L", "XL"];
 
@@ -20,7 +21,7 @@ export default async function getProductsById({
         {result.map((product) => (
           <div key={product._id} className="flex gap-10">
             <Image
-              src={urlForImage(product.image).url()}
+              src={urlForImage(product.image as unknown as Img).url()}
               alt={product.product}
               width={370}
               height={394}
@@ -46,7 +47,7 @@ export default async function getProductsById({
               </div>
 
               <div className="flex gap-5 items-baseline mt-7">
-                <AddToCart />
+                <AddToCart _id={params._id} />
                 <h3 className="font-bold text-2xl">
                   ${product.price.toFixed(2)}
                 </h3>

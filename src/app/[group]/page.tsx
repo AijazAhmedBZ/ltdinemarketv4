@@ -3,6 +3,7 @@ import { ProductsData } from "@/utils/mock";
 import { ProductTypes } from "@/utils/types";
 import { urlForImage } from "@/lib/image";
 import AddToCart from "@/components/AddToCart";
+import { Image as Img } from "sanity";
 
 export default async function getProductsByGroup({
   params,
@@ -13,8 +14,6 @@ export default async function getProductsByGroup({
   const result = data.filter(
     (product) => product.group.name.toLowerCase() === params.group
   );
-
-  // console.log(result);
   return (
     <div className="mt-10" >
       <div className="grid grid-cols-1 gap-y-10 md:grid md:grid-cols-2 md:gap-x-10 lg:grid lg:grid-cols-4 lg:gap-x-10">
@@ -23,7 +22,7 @@ export default async function getProductsByGroup({
             <div key={product._id}>
               <Image
                 // src={urlForImage(product.image).url()}
-                src={urlForImage(product.image).url()}
+                src={urlForImage(product.image as unknown as Img ).url()}
                 alt={product.product}
                 width={370}
                 height={394}
@@ -31,7 +30,7 @@ export default async function getProductsByGroup({
               <h3 className="font-bold text-lg">{product.product}</h3>
               <h3 className="font-bold text-lg mt-3 text-gray-400">{product.category}</h3>
               <h3 className="font-bold text-lg">${product.price.toFixed(2)}</h3>
-              <AddToCart />
+              <AddToCart _id={product._id} />
             </div>
           ))
         ) : (
