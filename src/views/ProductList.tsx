@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "@/components/ProductCard";
-import { ProductsData } from "@/utils/mock";
-import { ProductTypes } from "@/utils/types";
+import { ProductsData } from "@/utils/sanity_data";
+import { ProductTypes } from "@/utils/product_types";
 
 async function ProductList() {
   const data: ProductTypes[] = await ProductsData();

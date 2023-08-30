@@ -12,22 +12,20 @@ const getCartData = async () => {
 };
 
 export default async function CartData() {
-  const data: {res:cartTypes[]} = await getCartData();
-
-  // console.log(data);
-  // console.log(data.res);
-  // console.log(typeof data);
+  const data: { res: cartTypes[] } = await getCartData();
   return (
     <>
       {data.res.map((cart) => {
-        return <div key={cart.id}>
-          <ul>
-            <li>ID:  {cart.id}</li>
-            <li>User ID:  {cart.user_id}</li>
-            <li>Product ID:  {cart.product_id}</li>
-            <li>Quantity:  {cart.quantity}</li>
-          </ul>
-        </div>;
+        return (
+          <div key={cart.id}>
+            <ul>
+              <li>ID: {cart.id}</li>
+              <li>User ID: {cart.user_id}</li>
+              <li>Product ID: {cart.product_id}</li>
+              <li>Quantity: {cart.quantity}</li>
+            </ul>
+          </div>
+        );
       })}
     </>
   );

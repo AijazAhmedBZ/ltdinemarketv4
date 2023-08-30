@@ -14,6 +14,6 @@ export const cartTable = pgTable("cart", {
   quantity: integer("quantity").notNull(),
 });
 
-export type cartTypes = InferModel<typeof cartTable>
-export type insertCartTypes = InferModel<typeof cartTable,"insert">
+export type cartTypes = InferModel<typeof cartTable>;
+export type insertCartTypes = InferModel<typeof cartTable, "insert">;
 export const db = drizzle(sql);

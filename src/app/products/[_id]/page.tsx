@@ -1,10 +1,11 @@
 import React from "react";
-import { ProductsData } from "@/utils/mock";
-import { ProductTypes } from "@/utils/types";
+import { ProductsData } from "@/utils/sanity_data";
+import { ProductTypes } from "@/utils/product_types";
 import Image from "next/image";
 import AddToCart from "@/components/AddToCart";
 import { urlForImage } from "@/lib/image";
 import { Image as Img } from "sanity";
+import CartCounter from "@/components/CartCounter";
 
 const sizes = ["XS", "S", "M", "L", "XL"];
 
@@ -45,7 +46,10 @@ export default async function getProductsById({
                   );
                 })}
               </div>
-
+              <div className="flex justify-evenly mt-3">
+                <p className="pt-3">Quantity:</p>
+                <CartCounter />
+              </div>
               <div className="flex gap-5 items-baseline mt-7">
                 <AddToCart _id={params._id} />
                 <h3 className="font-bold text-2xl">

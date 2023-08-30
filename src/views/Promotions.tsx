@@ -39,15 +39,27 @@ const Promotions = () => {
         </div>
         <div className="bg-[#EFE1C7] mt-10 ml-3">
           <h1 className="text-sm/[15px] p-5">Flex Sweatshirt</h1>
-          <span className="text-base text-gray-500 ml-5 line-through">$100.00</span>
+          <span className="text-base text-gray-500 ml-5 line-through">
+            $100.00
+          </span>
           <span className="text-lg font-semibold ml-3">$75.00</span>
-          <Image className="h-[325px] object-scale-down" src={promo2} alt="promo2" />
+          <Image
+            className="h-[325px] object-scale-down"
+            src={promo2}
+            alt="promo2"
+          />
         </div>
         <div className="bg-[#D7D7D9] mt-10 ml-3">
           <h1 className="text-sm/[15px] p-5">Flex Push Button Bomber</h1>
-          <span className="text-base text-gray-500 ml-5 line-through">$225.00</span>{" "}
+          <span className="text-base text-gray-500 ml-5 line-through">
+            $225.00
+          </span>{" "}
           <span className="text-lg font-semibold ml-3">$190.00</span>
-          <Image className="h-[325px] object-scale-down"src={promo3} alt="promo3" />
+          <Image
+            className="h-[325px] object-scale-down"
+            src={promo3}
+            alt="promo3"
+          />
         </div>
       </div>
     </section>

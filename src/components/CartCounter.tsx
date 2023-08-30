@@ -15,10 +15,8 @@ const CartCounter = () => {
     dispatch(cartActions.addToCart({ quantity: 1 }));
   };
   const decrement = () => {
-    if(cartCounterValue) (
-      dispatch(cartActions.removeFromCart({ quantity: 1 }))
-    )
-  }
+    if (cartCounterValue) dispatch(cartActions.removeFromCart({ quantity: 1 }));
+  };
   return (
     <div className="flex justify-center items-baseline gap-5">
       <button

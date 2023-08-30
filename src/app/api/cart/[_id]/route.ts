@@ -32,9 +32,9 @@ export const POST = async (request: NextRequest) => {
   return NextResponse.json({ message: "Somthing Went Wrong" });
 };
 
-const user_id = await fetch(
-  `http://127.0.0.1:3000/api/cart/?user_id=${cookies().get("user_id")?.value}`
-);
+// const user_id = await fetch(
+//   `http://127.0.0.1:3000/api/cart/?user_id=${cookies().get("user_id")?.value}`
+// );
 export const GET = async (request: NextRequest) => {
   const req = request.nextUrl;
   const uid = req.searchParams.get("user_id") as string;

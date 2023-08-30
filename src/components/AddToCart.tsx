@@ -7,11 +7,9 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
-const AddToCart = ({_id}:{_id:string}) => {
+const AddToCart = ({ _id }: { _id: string }) => {
   const dispatch = useDispatch();
-  const cartValue = useSelector(
-    (state: RootState) => state.cart.totalQuantity
-    );
+  const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);
   const addProduct = async () => {
     dispatch(cartActions.addToCart({ quantity: 1 }));
     const res = await fetch(`/api/cart/${_id}`, {
