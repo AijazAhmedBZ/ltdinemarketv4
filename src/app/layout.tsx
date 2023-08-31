@@ -4,6 +4,7 @@ import { Sora } from "next/font/google";
 import Providers from "@/components/Provider";
 import Wrapper from "@/components/Wrapper";
 import Footer from "@/components/layout/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Sora({ subsets: ["latin"] });
 
@@ -18,18 +19,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Wrapper>
-          <Providers>
-            <Header/>
-            <main className="px-20">
-              {children}
-              <Footer />
-            </main>
-          </Providers>
-        </Wrapper>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Wrapper>
+            <Providers>
+              <Header />
+              <main className="px-20">
+                {children}
+                <Footer />
+              </main>
+            </Providers>
+          </Wrapper>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
