@@ -6,11 +6,14 @@ import Image from "next/image";
 import { ShoppingCart, Search, AlignJustify } from "lucide-react";
 import Link from "next/link";
 import { Input } from "../ui/input";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/nextjs";
 import { Button } from "../ui/button";
 
 export function Header() {
+  const cartValue = useSelector((state: RootState) => state.cart.totalQuantity);
   const { isSignedIn } = useAuth();
   return (
     <div className="flex justify-between flex-col lg:flex-row items-center py-6 px-5 ">
@@ -61,7 +64,7 @@ export function Header() {
           <Link href={"/cart"}>
             <div className="relative flex justify-center items-center h-10 w-10 rounded-full bg-gray-300">
               <span className="absolute top-0 right-0 bg-red-400 text-xs font-light rounded-full w-4 h-4 flex justify-center items-center">
-                {/* {cart.quantity} */}
+                {cartValue}
               </span>
               <ShoppingCart className="h-6 w-6" />
             </div>
