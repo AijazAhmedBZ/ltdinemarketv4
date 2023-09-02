@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 export default function CartData() {
   const [products, setProducts] = useState<any>(null);
+  const [refresh, setRefresh] = useState<boolean>(false);
   const { isSignedIn, userId } = useAuth();
 
   useEffect(() => {
@@ -16,14 +17,18 @@ export default function CartData() {
     })
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [isSignedIn]);
+  }, [isSignedIn, refresh]);
 
-  async function handleDelete() {
+  async function handleDelete(product_id: string) {
     const res = await fetch(`/api/cart?user_id=${userId}`, {
-      method: "DELETE"
+      method: "DELETE",
+      body: JSON.stringify({
+        user_id: userId,
+        product_id: product_id,
+      }),
     });
-    toast.success("Cart Empty Successfully");
-    console.log("DELETE", userId);
+    toast.success("Item Removed Successfully");
+    setRefresh(!refresh);
   }
   return (
     <>
@@ -38,6 +43,13 @@ export default function CartData() {
                   <li>Product ID: {cart.product_id}</li>
                   <li>Quantity: {cart.quantity}</li>
                   <li>Total Quantity: {cart.quantity * cart.quantity}</li>
+                  <li>
+                    <div>
+                      <Button onClick={() => handleDelete(cart.product_id)}>
+                        Remove Item
+                      </Button>
+                    </div>
+                  </li>
                 </ul>
               </div>
             );
@@ -46,9 +58,6 @@ export default function CartData() {
       ) : (
         <div>Please Sign In First...</div>
       )}
-      <div>
-        <Button onClick={() => handleDelete()}>Empty Cart</Button>
-      </div>
     </>
   );
 }
