@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
+import { cartTypes } from "@/lib/drizzle";
 
 export default function CartData() {
   const [products, setProducts] = useState<any>(null);
@@ -34,7 +35,7 @@ export default function CartData() {
     <>
       {isSignedIn ? (
         <div>
-          {products?.res.map((cart) => {
+          {products?.res.map((cart:cartTypes) => {
             return (
               <div key={cart.id}>
                 <ul>
