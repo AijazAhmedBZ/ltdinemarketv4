@@ -38,12 +38,12 @@ export default function CartData() {
           {products?.res.map((cart:cartTypes) => {
             return (
               <div key={cart.id}>
-                <ul>
+                <ul className="flex gap-4">
                   <li>ID: {cart.id}</li>
                   <li>User ID: {cart.user_id}</li>
-                  <li>Product ID: {cart.product_id}</li>
+                  <li>Product ID: {cart.id}</li>
                   <li>Quantity: {cart.quantity}</li>
-                  <li>Total Quantity: {cart.quantity * cart.quantity}</li>
+                  {/* <li>Total Quantity: {cart.quantity * cart.quantity}</li> */}
                   <li>
                     <div>
                       <Button onClick={() => handleDelete(cart.product_id)}>

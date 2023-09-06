@@ -1,4 +1,6 @@
 import CartData from "@/components/CartData";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Page() {
   return (
@@ -6,6 +8,11 @@ export default async function Page() {
       <div>
         {/* @ts-ignore */}
         <CartData />
+      </div>
+      <div>
+        <Link href={"/checkout"}>
+          <Button>Proceed to Checkout</Button>
+        </Link>
       </div>
     </>
   );

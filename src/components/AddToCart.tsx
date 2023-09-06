@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useAuth } from "@clerk/nextjs";
+import Link from "next/link";
 
 const AddToCart = ({ _id }: { _id: string }) => {
   const dispatch = useDispatch();
@@ -25,11 +26,13 @@ const AddToCart = ({ _id }: { _id: string }) => {
     toast.success("Product Add to Cart Successfully");
   };
   return (
-    <div>
-      <Button onClick={addProduct} className="text-white rounded-lg mt-4 ">
-        Add to Cart
-      </Button>
-    </div>
+    <>
+      <div>
+        <Button onClick={addProduct} className="text-white rounded-lg mt-4 ">
+          <Link href={"/cart"}>Add to Cart</Link>
+        </Button>
+      </div>
+    </>
   );
 };
 
